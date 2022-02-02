@@ -21,7 +21,7 @@ function createProductItemElement({ sku, name, image }) {
   section.appendChild(createProductImageElement(image));
   section.appendChild(createCustomElement('button', 'item__add', 'Adicionar ao carrinho!'));
 
-  return section(fetchProducts);
+  return section;
 }
 
 function getSkuFromProductItem(item) {
@@ -39,5 +39,17 @@ function createCartItemElement({ sku, name, salePrice }) {
   li.addEventListener('click', cartItemClickListener);
   return li;
 }
+const objProduct = async () => {
+  const allProduct = await fetchProducts('computador');
+  const { resultado } = allProduct;
+  return resultado;
+};
+const append = (product) => product.forEach((element) => {
+  const objResult = createProductItemElement(element);
+  section.appendChild(objResult);
+});
 
-window.onload = () => fetchProducts;
+window.onload = async () => {
+  const elementProduct = await objProduct();
+  append(elementProduct);
+ };
