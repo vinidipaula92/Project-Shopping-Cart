@@ -1,10 +1,9 @@
-const getUrl = (produtoName) => `https://api.mercadolibre.com/sites/MLB/search?q=${produtoName}`;
-
-const fetchProducts = async (produtoName) => {  
-  if (!produtoName) {
+const fetchProducts = async (names) => {  
+  const getUrl = `https://api.mercadolibre.com/sites/MLB/search?q=${names}`;
+  if (!names) {
     throw new Error('You must provide an url');
 }
-  const response = await fetch(getUrl(produtoName));
+  const response = await fetch(getUrl);
   const produto = await response.json();
   return produto;
 };
