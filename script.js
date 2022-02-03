@@ -1,3 +1,5 @@
+const sectionItems = document.querySelector('.items');
+
 function createProductImageElement(imageSource) {
   const img = document.createElement('img');
   img.className = 'item__image';
@@ -27,21 +29,19 @@ function createProductItemElement({ id: sku, title: name, thumbnail: image }) {
 function getSkuFromProductItem(item) {
   return item.querySelector('span.item__sku').innerText;
 }
-
+// Removendo produto do carrinho ao clicar
 function cartItemClickListener(event) {
-  // coloque seu código aqui
+  event.target.remove();
 }
 
-function createCartItemElement({ id: sku, title: name, price: salePrice }) {
+function createCartItemElement({ sku, name, salePrice }) {
   const li = document.createElement('li');
   li.className = 'cart__item';
   li.innerText = `SKU: ${sku} | NAME: ${name} | PRICE: $${salePrice}`;
   li.addEventListener('click', cartItemClickListener);
   return li;
 }
-const sectionItems = document.querySelector('.items');
-const itemsCart = document.querySelector('.cart__items');
-
+// Adicionando produtos a minha página com API
 const objProduct = async () => {
   const produtos = await fetchProducts('computador');
   const { results } = produtos;
@@ -51,18 +51,18 @@ const append = (product) => product.forEach((produto) => {
   const objResult = createProductItemElement(produto);
   sectionItems.appendChild(objResult);
 });
-const objItem = async () => {
-  const allItems = await fetchItem('MLB1615760527');
-  const { results } = items;
-  return results;
+// Adicionando items ao meu carrinho
+const itemSelect = async (element) => {
+  const getItem = element.target.parentNode;
+  const selectId = getSkuFromProductItem(getItem);
+  const { id, title, price } = await fetchItem(selectId);
+  const selectClassItemSku = document.querySelector('.cart__items');
+  const objCreateItems = createCartItemElement({ sku: id, name: title, salePrice: price });
+  selectClassItemSku.appendChild(objCreateItems);
 };
-const appendItem = (item) => item.forEach((itensElement) => {
-  const objItemsResult = createCartItemElement(itensElement);
-  itemsCart.appendChild(objItemsResult);
-});
 window.onload = async () => {
   const elementProduct = await objProduct();
   append(elementProduct);
-  const elementItems = await objItem();
-  appendItem(elementItems);
+  const eventAdicionarCarrinho = document.querySelectorAll('.item__add');
+  eventAdicionarCarrinho.forEach((myItems) => myItems.addEventListener('click', itemSelect));
  };
