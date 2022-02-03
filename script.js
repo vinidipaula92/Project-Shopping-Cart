@@ -1,4 +1,5 @@
 const sectionItems = document.querySelector('.items');
+const cartItems = document.querySelector('.cart__items');
 
 function createProductImageElement(imageSource) {
   const img = document.createElement('img');
@@ -56,13 +57,16 @@ const itemSelect = async (element) => {
   const getItem = element.target.parentNode;
   const selectId = getSkuFromProductItem(getItem);
   const { id, title, price } = await fetchItem(selectId);
-  const selectClassItemSku = document.querySelector('.cart__items');
   const objCreateItems = createCartItemElement({ sku: id, name: title, salePrice: price });
-  selectClassItemSku.appendChild(objCreateItems);
+  cartItems.appendChild(objCreateItems);
 };
 window.onload = async () => {
   const elementProduct = await objProduct();
   append(elementProduct);
   const eventAdicionarCarrinho = document.querySelectorAll('.item__add');
   eventAdicionarCarrinho.forEach((myItems) => myItems.addEventListener('click', itemSelect));
+  cartItems.innerHTML = localStorage.getItem('.cart__items');
+  for (let index = 0; index < cartItems.childNodes; index += 1) {
+    cartItems.childNodes[index].addEventListener('click', eventAdicionarCarrinho);
+  }
  };
