@@ -1,5 +1,6 @@
 const sectionItems = document.querySelector('.items');
 const cartItems = document.querySelector('.cart__items');
+const esvaziarCarrinho = document.querySelector('.empty-cart');
 
 function createProductImageElement(imageSource) {
   const img = document.createElement('img');
@@ -62,6 +63,13 @@ const itemSelect = async (element) => {
   saveCartItems(cartItems.innerHTML);
 };
 
+function limparCarrinho() {
+  const apagarCarrinho = document.querySelectorAll('.cart__item');
+  for (let index = 0; index < apagarCarrinho.length; index += 1) {
+    apagarCarrinho[index].remove();
+  }
+}
+esvaziarCarrinho.addEventListener('click', limparCarrinho);
 window.onload = async () => {
   cartItems.innerHTML = getSavedCartItems();
   const elementProduct = await objProduct();
