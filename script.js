@@ -1,6 +1,7 @@
 const sectionItems = document.querySelector('.items');
 const cartItems = document.querySelector('.cart__items');
 const esvaziarCarrinho = document.querySelector('.empty-cart');
+const carregando = document.querySelector('.loading');
 
 function createProductImageElement(imageSource) {
   const img = document.createElement('img');
@@ -77,4 +78,5 @@ window.onload = async () => {
   const eventAdicionarCarrinho = document.querySelectorAll('.item__add');
   eventAdicionarCarrinho.forEach((myItems) => myItems.addEventListener('click', itemSelect));
   cartItems.addEventListener('click', cartItemClickListener);
+  carregando.remove();
  };
