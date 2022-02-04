@@ -1,5 +1,6 @@
 const saveCartItems = (itemsAdicionados) => {
-  localStorage.setItem('cartItems', itemsAdicionados);
+  const storage = localStorage.setItem('cartItems', itemsAdicionados);
+  return storage;
 };
 
 if (typeof module !== 'undefined') {
