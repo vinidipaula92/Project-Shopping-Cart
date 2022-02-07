@@ -37,7 +37,7 @@ function getItems() {
   const cartItemsArray = Array.from(document.querySelectorAll('.cart__item'));
   return cartItemsArray;
 } 
-// Somando os valores dos produtos
+// Pegando os preços dos items do carrinho e somando ao total
 function getPriceItems() { 
   const cartItemsAll = getItems();
   let total = 0;
@@ -47,6 +47,7 @@ function getPriceItems() {
   });
   return total;
 }
+// Adicionando os valores dentro do meu paragrafo
 function sumPriceItems() {
   const totalPrice = document.querySelector('.total-price');
   totalPrice.innerText = getPriceItems();
