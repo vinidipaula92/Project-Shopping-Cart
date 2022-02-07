@@ -45,7 +45,7 @@ function getPriceItems() {
     const priceItems = element.innerText.split('PRICE: $')[1];
     total += parseFloat(priceItems);
   });
-  return total.toFixed(2);
+  return total;
 }
 // Adicionando os valores dentro do meu paragrafo
 function sumPriceItems() {
