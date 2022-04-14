@@ -133,22 +133,55 @@ body {
   flex-flow: column wrap;
   background-color: rgb(241, 241, 238);
   height: 100vh;
+  padding: 20px;
+  box-sizing: border-box;
 }
 
 .cart .cart__items {
   height: 500px;
   overflow-y: scroll;
+  padding: 10px;
+  border: 2px solid rgb(234, 234, 233);
+  border-radius: 5px;
+  box-sizing: border-box;
 }
 
 .empty-cart {
   width: 170px;
-  height: 35px;
   margin: 0 auto;
   border: 2px solid rgb(5, 52, 219);
   background-color: rgb(249, 249, 246);
+  border-radius: 5px;
+  text-align: center;
+  font-size: 20px;
+  font-weight: 700;
+  color: rgb(5, 52, 219);
 }
 
 .total-price {
-  margin: 0 40px;
   padding: 10px;
+  display: flex;
+  text-align: center;
+  align-items: center;
+  justify-content: center;
+}
+
+.total {
+  font-size: 20px;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 2px solid rgb(5, 52, 219);
+  margin: 10px;
+  padding: 10px;
+  border-radius: 5px;
+}
+
+.cart__item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  margin: 10px 0;
 }
