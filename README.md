@@ -36,6 +36,8 @@ e de fácil manutenção! Para rodá-los localmente no projeto, execute os coman
   npm run lint
   npm run lint:styles
 ```
+</details>
+<h1 style="center">Obrigado pela visita ao meu repositório</h1>
 
 ## 🔗 Links
 
